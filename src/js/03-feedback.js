@@ -21,15 +21,19 @@ localStorage.setItem(localStorageKey, JSON.stringify(state));
 }, 500));
 
 feedbackForm.addEventListener('submit', (event) => {
-event.preventDefault();
-const state = {
-    email: emailInput.value,
-    message: messageInput.value,
-};
-localStorage.removeItem(localStorageKey);
-emailInput.value = '';
-messageInput.value = '';
-console.log(state);
-});
-
+    event.preventDefault();
+    const state = {
+      email: emailInput.value,
+      message: messageInput.value,
+    };
+    if (state.email && state.message) {
+      localStorage.removeItem(localStorageKey);
+      emailInput.value = '';
+      messageInput.value = '';
+      console.log(state);
+    } else {
+      alert('Необхідно заповнити обидва поля форми.');
+    }
+  });
+  
 
